@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import {  Link } from 'gatsby';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <nav>
@@ -16,6 +16,9 @@ export default function Layout({ children }: LayoutProps) {
           <li>
             <Link to='/about'>About</Link>
           </li>
+          <li>
+            <Link to='/blog'>Blog</Link>
+          </li>
         </ul>
       </nav>
 
@@ -23,3 +26,5 @@ export default function Layout({ children }: LayoutProps) {
     </div>
   );
 }
+
+export default Layout
