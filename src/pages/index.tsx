@@ -5,7 +5,7 @@ import Layout from '../components/layout'
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
-      <h1>Index Page</h1>
+      <h1 className='text-xl'>Index Page</h1>
     </Layout>
   )
 }
