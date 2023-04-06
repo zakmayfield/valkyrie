@@ -9,9 +9,9 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className='w-full flex gap-5 justify-center'>
           <li>
-            <Link to='/home'>Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
             <Link to='/about'>About</Link>
@@ -19,7 +19,7 @@ export default function Layout({ children }: LayoutProps) {
         </ul>
       </nav>
 
-      <main>{children}</main>
+      <main className='max-w-5xl mx-auto'>{children}</main>
     </div>
   );
 }
