@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import { Link, PageProps } from 'gatsby';
+import Layout from '../components/layout';
+import { StaticImage } from 'gatsby-plugin-image';
+import Seo from '../components/seo';
 
-export default function AboutPage() {
+const AboutPage: React.FC<PageProps> = () => {
   return (
-    <main>
-      <h1>About Me</h1>
-      <Link to='/home'>Home</Link>
+    <Layout>
+      <h1 className='text-xl'>About Me</h1>
 
-      <div>
-        <p>content ...</p>
-      </div>
-    </main>
+      <StaticImage
+        alt='barista making pour over coffee in a coffee shop'
+        src='../images/pourover.jpeg'
+        placeholder='blurred'
+        className='rounded-xl'
+      />
+    </Layout>
   );
-}
+};
 
-export const Head = () => <title>About Me</title>;
+export default AboutPage;
+
+export const Head = () => <Seo pageTitle='About Me' />;
