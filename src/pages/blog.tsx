@@ -50,14 +50,14 @@ const BlogPage = ({ data }: BlogDataType) => {
 
 export const query = graphql`
   query AllMdx {
-    allMdx {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
+        id
         frontmatter {
           date(formatString: "MMMM D, YYYY")
           slug
           title
         }
-        id
       }
     }
   }
