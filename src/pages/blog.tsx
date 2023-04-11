@@ -39,7 +39,9 @@ const BlogPage = ({ data }: BlogDataType) => {
         <div>
           <ul>
             {data.allMdx?.nodes.map((node: BlogType) => (
-              <li key={node.id}>{node.frontmatter.title}</li>
+              <li key={node.id}>
+                <Link to={node.frontmatter.slug}>{node.frontmatter.title}</Link>
+              </li>
             ))}
           </ul>
         </div>
