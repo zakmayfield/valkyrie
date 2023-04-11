@@ -4,17 +4,22 @@ import Layout from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 
-type NameType = {
-  name: string
-}
+type BlogType = {
+  id: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    slug: string;
+  };
+};
 
 type BlogDataType = PageProps & {
   data: {
-    allFile?: {
-      nodes: NameType[];
+    allMdx?: {
+      nodes: BlogType[];
     };
   };
-}
+};
 
 const BlogPage = ({ data }: BlogDataType) => {
   return (
@@ -33,8 +38,8 @@ const BlogPage = ({ data }: BlogDataType) => {
 
         <div>
           <ul>
-            {data.allFile?.nodes.map((node: any) => (
-              <li key={node.name}>{node.name}</li>
+            {data.allMdx?.nodes.map((node: BlogType) => (
+              <li key={node.id}>{node.frontmatter.title}</li>
             ))}
           </ul>
         </div>
@@ -44,10 +49,15 @@ const BlogPage = ({ data }: BlogDataType) => {
 };
 
 export const query = graphql`
-  query AllFile {
-    allFile {
+  query AllMdx {
+    allMdx {
       nodes {
-        name
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          slug
+          title
+        }
+        id
       }
     }
   }
