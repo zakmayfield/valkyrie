@@ -1,10 +1,27 @@
 import * as React from 'react';
-import { Link, PageProps } from 'gatsby';
+import { Link, PageProps, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import Seo from '../components/seo';
 
-const BlogPage: React.FC<PageProps> = () => {
+type BlogType = {
+  id: string;
+  frontmatter: {
+    date: string;
+    title: string;
+    slug: string;
+  };
+};
+
+type BlogDataType = PageProps & {
+  data: {
+    allMdx?: {
+      nodes: BlogType[];
+    };
+  };
+};
+
+const BlogPage = ({ data }: BlogDataType) => {
   return (
     <Layout>
       <h1 className='text-xl'>Blog</h1>
@@ -18,10 +35,33 @@ const BlogPage: React.FC<PageProps> = () => {
 
       <div className='mt-5'>
         <h2 className='text-xl'>Coffee Havens Latest Blogs</h2>
+
+        <div>
+          <ul>
+            {data.allMdx?.nodes.map((node: BlogType) => (
+              <li key={node.id}>{node.frontmatter.title}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </Layout>
   );
 };
+
+export const query = graphql`
+  query AllMdx {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
+      nodes {
+        id
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          slug
+          title
+        }
+      }
+    }
+  }
+`;
 
 export default BlogPage;
 
