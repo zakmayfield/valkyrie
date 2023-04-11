@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Link, PageProps, graphql } from 'gatsby';
-import Layout from '../components/layout';
+import Layout from '../../components/layout';
 import { StaticImage } from 'gatsby-plugin-image';
-import Seo from '../components/seo';
+import Seo from '../../components/seo';
 
 type BlogType = {
   id: string;
@@ -28,7 +28,7 @@ const BlogPage = ({ data }: BlogDataType) => {
 
       <StaticImage
         alt='computer and coffee resting on a coffee shop table'
-        src='../images/computer.jpeg'
+        src='../../images/computer.jpeg'
         placeholder='blurred'
         className='rounded-xl'
       />
@@ -40,7 +40,9 @@ const BlogPage = ({ data }: BlogDataType) => {
           <ul>
             {data.allMdx?.nodes.map((node: BlogType) => (
               <li key={node.id}>
-                <Link to={node.frontmatter.slug}>{node.frontmatter.title}</Link>
+                <Link to={`${node.frontmatter.slug}`}>
+                  {node.frontmatter.title}
+                </Link>
               </li>
             ))}
           </ul>
