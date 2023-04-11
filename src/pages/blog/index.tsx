@@ -13,7 +13,7 @@ type BlogType = {
   };
 };
 
-type BlogDataType = PageProps & {
+type BlogsDataType = PageProps & {
   data: {
     allMdx?: {
       nodes: BlogType[];
@@ -21,7 +21,7 @@ type BlogDataType = PageProps & {
   };
 };
 
-const BlogPage = ({ data }: BlogDataType) => {
+const BlogPage = ({ data }: BlogsDataType) => {
   return (
     <Layout>
       <h1 className='text-xl'>Blog</h1>
