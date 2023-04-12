@@ -24,7 +24,9 @@ const BlogPost = ({ data, children }: BlogDataType) => {
 };
 
 export const query = graphql`
+  # Under the hood, Gatsby makes the id value of the data layer node (mdx files) available to use as a query variable
   query BlogQuery($id: String) {
+    # mdx is used to get a single node versus allMdx for all of the available nodes
     mdx(id: { eq: $id }) {
       frontmatter {
         title
